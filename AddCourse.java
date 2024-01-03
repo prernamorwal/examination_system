@@ -104,7 +104,7 @@
 		{
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "prerna");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "root1262");
 			Statement st = con.createStatement();
 			st.executeUpdate("insert into addnewcourse(coursename , time , eachmark) values('"+coursename+"' ,'"+time+"' ,'"+marks+"')");
 			JOptionPane.showMessageDialog(null ,"Data Inserted");
