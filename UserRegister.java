@@ -243,7 +243,7 @@ class UserRegister extends JPanel implements ActionListener
 		try
 		{
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "root1262");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "prerna");
 			Statement st = con.createStatement();
 			st.executeUpdate("insert into userregister(uname , upass , name , mobileno , gender , email , dob , college , address) values('"+uname+"' ,'"+upass+"' ,'"+name+"' ,'"+mobile+"' ,'"+gender+"' ,'"+email+"' ,'"+dob+"' ,'"+college+"' ,'"+address+"'  )");
 			JOptionPane.showMessageDialog(null , "DataInserted ");

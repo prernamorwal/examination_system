@@ -6,9 +6,9 @@ class EditDetails extends JPanel implements ActionListener
 {
 	Users u;
 	String getGender ;
-	JLabel l1 , l2 , l3 , l4 , l5 , l6 , l7 , l8 , l9, tx1 ;
+	JLabel l1 , l2 , l3 , l4 , l5 , l6 , l7 , l8 , l9 ;
 	JPasswordField tx2;
-	JTextField tx3 , tx4 , tx5 , tx6 , tx7;
+	JTextField tx3 , tx4 , tx5 , tx6 , tx7,tx1;
 	JButton b1 , b2 , b3 , b;
     JComboBox cb1 , cb2 , cb3;
 	JRadioButton r1 , r2 , r3;
@@ -30,13 +30,13 @@ class EditDetails extends JPanel implements ActionListener
 		Font f1 = new Font("Times New Roman" , Font.BOLD , 30);
 		setLayout(null);
 		
-		l1 = new JLabel("Enter Username :");
+		l1 = new JLabel("Username :");
 		l1.setBounds(700 , 50 , 300 , 50);
 		l1.setForeground(Color.white);
 		l1.setFont(f1);
 		add(l1);
 		
-		tx1 = new JLabel();
+		tx1 = new JTextField();
 		tx1.setBounds(1000 , 50 , 320 , 50);
 		tx1.setOpaque(false);
 		tx1.setForeground(Color.white);
@@ -49,7 +49,7 @@ class EditDetails extends JPanel implements ActionListener
 		b.setOpaque(false);
 		b.setFont(f1);
 		add(b);
-		b.addActionListener(this);
+		b.addActionListener(f);
 		
 		
 		l3 = new JLabel("Name :");
@@ -197,32 +197,32 @@ class EditDetails extends JPanel implements ActionListener
 	}
 	public void actionPerformed(ActionEvent e)
 	{
-		if(e.getSource()==b)
-		{
-		String uname=tx1.getText();
-		try
-		{
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "root1262");
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery("select * from userregister where uname ='"+uname+"' ");
+		// if(e.getSource()==b)
+		// {
+		// String uname=tx1.getText();
+		// try
+		// {
+			// Class.forName("com.mysql.cj.jdbc.Driver");
+			// Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "prerna");
+			// Statement st = con.createStatement();
+			// ResultSet rs = st.executeQuery("select * from userregister where uname ='"+uname+"' ");
 			
-			if(rs.next())
-			{
-		     	//tx2.setText(rs.getString(2));
-		     	tx3.setText(rs.getString(4));
-		     	tx4.setText(rs.getString(5));
-		     	tx5.setText(rs.getString(7));
-		     	tx6.setText(rs.getString(9));
-		     	tx7.setText(rs.getString(10));	
-			}
-			con.close();
-		}	
-		catch(Exception e1)
-		{
-			System.out.println(e1);
-		}
-		}
+			// if(rs.next())
+			// {
+		     	// tx2.setText(rs.getString(2));
+		     	// tx3.setText(rs.getString(4));
+		     	// tx4.setText(rs.getString(5));
+		     	// tx5.setText(rs.getString(7));
+		     	// tx6.setText(rs.getString(9));
+		     	// tx7.setText(rs.getString(10));	
+			// }
+			// con.close();
+		// }	
+		    // catch(Exception e1)
+		   // {
+		    	// System.out.println(e1);
+		   // }
+		// }
 	}
 	public void paintComponent(Graphics g)
 	{

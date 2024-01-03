@@ -289,7 +289,7 @@ class View extends JPanel implements ActionListener
 		try
 		{
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "root1262");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "prerna");
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery("select * from editcourse where qid='"+s1+"'");
 			if(rs.next())
@@ -454,7 +454,7 @@ class Update extends JPanel implements ActionListener
 		try
 		{
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "root1262");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "prerna");
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery("select * from editcourse where qid='"+s1+"'");
 			if(rs.next())
@@ -619,7 +619,7 @@ class Remove extends JPanel implements ActionListener
 		try
 		{
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "root1262");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "prerna");
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery("select * from editcourse where qid='"+s1+"'");
 			if(rs.next())

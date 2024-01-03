@@ -75,7 +75,7 @@ class ManageCourse extends JPanel implements ActionListener
 			try
 			{
 				Class.forName("com.mysql.cj.jdbc.Driver");
-				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "root1262");
+				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "prerna");
 				Statement st=con.createStatement();
 				st.executeUpdate("delete from addnewcourse where coursename='"+s1+"'");
 				

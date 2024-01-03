@@ -124,12 +124,12 @@ class FDemo extends JFrame implements ActionListener
 	  {
 		  try
 				{
-					String s1 = "Java";
 					System.out.println("...................................................");
 					Class.forName("com.mysql.cj.jdbc.Driver");
-					Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "root1262");
+					Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "prerna");
 					Statement st=con.createStatement();
-					ResultSet rs=st.executeQuery("select  count(*) from editcourse where coursename ='"+s1+"'");
+					String s1 = "Java";
+					ResultSet rs=st.executeQuery("select  count(*) from editcourse where coursename ='"+s1+"'");//editcourse where qid 
 					rs.next();
 					int total=rs.getInt(1);
 					
@@ -209,7 +209,7 @@ class FDemo extends JFrame implements ActionListener
 			try
 			{
 				Class.forName("com.mysql.cj.jdbc.Driver");
-				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "root1262");
+				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "prerna");
 				Statement st = con.createStatement();
 				ResultSet rs = st.executeQuery("select correctoption  from editcourse where qid = '"+qid+"'");
 				while(rs.next())
@@ -237,7 +237,7 @@ class FDemo extends JFrame implements ActionListener
 		    // try
     		// {
 	     		// Class.forName("com.mysql.cj.jdbc.Driver");
-		    	// Connection con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "root1262");
+		    	// Connection con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "prerna");
 	    		// Statement st1 = con1.createStatement();
      			// ResultSet rs1 = st1.executeQuery("select * from editcourse where qid ='"+qid+"' ");
 			
@@ -297,7 +297,7 @@ class FDemo extends JFrame implements ActionListener
 				Class.forName("com.mysql.cj.jdbc.Driver");
 			    if(con5==null)
 			   {
-				con5 = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "root1262");
+				con5 = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "prerna");
 				st5 = con5.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 					System.out.println("RAM1");
      			 rs5= st5.executeQuery("select * from editcourse where coursename = '"+coursename+"'");
@@ -364,7 +364,7 @@ class FDemo extends JFrame implements ActionListener
 			try
 			{
 				Class.forName("com.mysql.cj.jdbc.Driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "root1262");
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "prerna");
 	            Statement st = con.createStatement();
      			st.executeUpdate("delete from result");
 				con.close();
@@ -389,7 +389,7 @@ class FDemo extends JFrame implements ActionListener
 	    	{
 	     		Class.forName("com.mysql.cj.jdbc.Driver");
 
-				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "root1262");
+				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "prerna");
 	    Statement st = con.createStatement();
      			st.executeUpdate("insert into editcourse(qid , questionstatement , option1, option2, option3, option4,correctoption , coursename) values('"+questionid+"' ,'"+questionstatement+"' ,'"+option1+"' ,'"+option2+"' ,'"+option3+"' ,'"+option4+"' ,'"+correctoption+"','"+coursename+"')");
 	    		System.out.print("Data Inserted");
@@ -483,7 +483,7 @@ class FDemo extends JFrame implements ActionListener
 			try
 	    	{
 		    	Class.forName("com.mysql.cj.jdbc.Driver");
-				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "root1262");
+				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "prerna");
 	     		Statement st = con.createStatement();
 		    	ResultSet rs = st.executeQuery("select * from addnewcourse");
 	    		while(rs.next())
@@ -504,13 +504,14 @@ class FDemo extends JFrame implements ActionListener
 		}
 		if(e.getSource()==managecourse.b3)
 		{
+			String coursename = (String)managecourse.cb1.getSelectedItem();
 			card.show(cn, "editcourse");
 			try
 	    	{
 		    	Class.forName("com.mysql.cj.jdbc.Driver");
-				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "root1262");
+				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "prerna");
 	     		Statement st = con.createStatement();
-		    	ResultSet rs = st.executeQuery("select * from editcourse");
+		    	ResultSet rs = st.executeQuery("select * from editcourse where  coursename = '"+coursename+"' order by qid");
 	    		while(rs.next())
 	     		{
 	     			
@@ -550,7 +551,7 @@ class FDemo extends JFrame implements ActionListener
 			try
 	    	{
 		    	Class.forName("com.mysql.cj.jdbc.Driver");
-				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "root1262");
+				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "prerna");
 	     		Statement st = con.createStatement();
 		    	ResultSet rs = st.executeQuery("select * from userregister");
 	    		while(rs.next())
@@ -581,15 +582,12 @@ class FDemo extends JFrame implements ActionListener
 			try
 	    	{
 		    	Class.forName("com.mysql.cj.jdbc.Driver");
-				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "root1262");
+				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "prerna");
 	     		Statement st = con.createStatement();
 		    	ResultSet rs = st.executeQuery("select * from addnewcourse");
 	    		while(rs.next())
 	     		{
-	     			
-	
-				courseresult.cb1.addItem(rs.getString(2));
-					 
+				courseresult.cb1.addItem(rs.getString(2)); 
 	     		}
      			
 			    
@@ -620,7 +618,7 @@ class FDemo extends JFrame implements ActionListener
 	    	{
 		    	Class.forName("com.mysql.cj.jdbc.Driver");
 
-				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "root1262");
+				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "prerna");
 	     		Statement st = con.createStatement();
 		    	ResultSet rs = st.executeQuery("select * from userregister where uname='"+uname+"' and upass = '"+upass+"'");
 	    		
@@ -628,7 +626,7 @@ class FDemo extends JFrame implements ActionListener
 	     		{
 	     			
 	     			card.show(cn , "welcome");
-					wel.l2.setText("Welcome "+uname); 
+					wel.l2.setText("Welcome "+uname);
 					 
 	     		}
      			else
@@ -670,7 +668,7 @@ class FDemo extends JFrame implements ActionListener
 			try
 	    	{
 	     		Class.forName("com.mysql.cj.jdbc.Driver");
-				 con5 = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "root1262");
+				 con5 = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "prerna");
             	 st5 = con5.createStatement();
      			 rs5 = st5.executeQuery("select * from editcourse where coursename = '"+coursename+"'");
 	    	    if(rs5.next())
@@ -715,7 +713,7 @@ class FDemo extends JFrame implements ActionListener
 		    try
     		{
 	     		Class.forName("com.mysql.cj.jdbc.Driver");
-				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "root1262");
+				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "prerna");
 	    		Statement st = con.createStatement();
      			ResultSet rs = st.executeQuery("select * from userregister where uname ='"+uname+"' ");
 			
@@ -741,6 +739,35 @@ class FDemo extends JFrame implements ActionListener
 		// {
 			// card.show(cn, "searchdata");
 		// }
+		
+		//-----------------------------Editdetails--------------------------------------
+
+		if(e.getSource()==editdetails.b)
+		{
+			String uname = editdetails.tx1.getText();
+		try
+		{
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examination" , "root" , "prerna");
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery("select * from userregister where uname ='"+uname+"' ");
+			
+			if(rs.next())
+			{
+		     	//tx2.setText(rs.getString(2));
+		     	editdetails.tx3.setText(rs.getString(4));
+		     	editdetails.tx4.setText(rs.getString(5));
+		     	editdetails.tx5.setText(rs.getString(7));
+		     	editdetails.tx6.setText(rs.getString(9));
+		     	editdetails.tx7.setText(rs.getString(10));	
+			}
+			con.close();
+		}	
+		    catch(Exception e1)
+		   {
+		    	System.out.println(e1);
+		   }
+		}
 		
 	}
 }
